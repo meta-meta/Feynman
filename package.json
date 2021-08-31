@@ -1,0 +1,22 @@
+{
+  "name": "feynman",
+  "version": "1.0.0",
+  "description": "pi zero-w based dynamic musical notation i/o",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meta-meta/Feynman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/meta-meta/Feynman/issues"
+  },
+  "homepage": "https://github.com/meta-meta/Feynman#readme",
+  "dependencies": {
+    "rpi-ws281x-native": "github:meta-meta/node-rpi-ws281x-native"
+  }
+}
