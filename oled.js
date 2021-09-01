@@ -14,9 +14,14 @@ async function main () {
   sh1107.buffer.fill(0x00);
   await sh1107.update();
 
-  await sh1107.fillRect(17,75,100,10,'WHITE');
+  //await sh1107.fillRect(17,75,100,10,'WHITE');
 
-  await sh1107.writeString(17, 75, font, 'ROBOTS ARE HERE', 'BLACK');
+  //await sh1107.writeString(17, 75, font, 'ROBOTS ARE HERE', 'BLACK');
+   await sh1107.drawCircle(64, 63, 63, 'WHITE');
+    //sh1107.drawCircle(64, 64, 16, 'WHITE');
 }
 
-main();
+
+main().catch(err => {
+    console.log(err);
+});

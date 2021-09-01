@@ -44,15 +44,15 @@ async function main() {
   const ctx = canvas.getContext('2d');
 
   // draw stuff using familiar html5 canvas syntax
-  ctx.font = "16pt 'JetBrainsMono'";
+  ctx.font = "27pt 'JetBrainsMono'";
   ctx.fillStyle = '#000000';
   ctx.fillRect(0,0,128,128);
   ctx.fillStyle = '#FFFFFF';
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle';
 
-  ctx.fillText(`0123456`, 63, 63);
-  ctx.fillText(`789૪Ɛ`, 63, 73);
+  ctx.fillText(`012345`, 63, 53);
+  ctx.fillText(`6789૪Ɛ`, 63, 83);
 
   // render canvas to sh1107
   await render(sh1107, canvas, buffer);

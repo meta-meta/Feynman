@@ -5,7 +5,7 @@ function HSVtoHex(h, s, v) {
       return hex.length == 1 ? "0" + hex : hex;
     }
 
-      console.log(r, g, b);
+
 
       return r << 16 | g << 8 | b;
       
@@ -79,9 +79,14 @@ const channel = ws281x(12, {
 
 
 const colorArray = channel.array;
-for (let i = 0; i < channel.count; i++) {
-    colorArray[i] = HSVtoHex(i / 12, 1, 0.1);
-    console.log(i, colorArray[i]);
-}
+let t = 0;
+setInterval(() => {
+    for (let i = 0; i < channel.count; i++) {
+	colorArray[i] = HSVtoHex(((i + 9) % 12) / 12, 1, t % 12 == i ? 0.1 : 0.01);
+    }
 
-ws281x.render();
+    t++;
+
+    ws281x.render();
+}, 100);
+
