@@ -10,8 +10,13 @@ async function render(sh1107, canvas, buffer) {
   await sh1107.drawBitmap(buffer);
 }
 
-async function main() {
-  const sh1107 = new SH1107({
+let ctx;
+let sh1107;
+let canvas;
+let buffer;
+
+async function init() {
+  sh1107 = new SH1107({
     width: 128,
     height: 128,
     i2c: new I2C(),
@@ -23,7 +28,7 @@ async function main() {
   await sh1107.update();
 
   // init pureimage
-  const canvas = PImage.make(128,128);
+  canvas = PImage.make(128,128);
 
   // load font
   // Note: you can e.g. also load Font Awesome ttf to render icons
@@ -40,8 +45,8 @@ async function main() {
   });
   await fontLoaded;
 
-  const buffer = Buffer.alloc(canvas.width * canvas.height);
-  const ctx = canvas.getContext('2d');
+  buffer = Buffer.alloc(canvas.width * canvas.height);
+  ctx = canvas.getContext('2d');
 
   // draw stuff using familiar html5 canvas syntax
   ctx.font = "27pt 'JetBrainsMono'";
@@ -58,4 +63,11 @@ async function main() {
   await render(sh1107, canvas, buffer);
 }
 
-main();
+module.exports = {
+  init,
+  print: async (str) => {
+    ctx.fillRect(0, 0, 128, 128);
+    ctx.fillText(str, x, y);
+    await render(sh1107, canvas, buffer);
+  }
+}
