@@ -80,13 +80,41 @@ const channel = ws281x(12, {
 
 const colorArray = channel.array;
 let t = 0;
-setInterval(() => {
-    for (let i = 0; i < channel.count; i++) {
-	colorArray[i] = HSVtoHex(((i + 9) % 12) / 12, 1, t % 12 == i ? 0.1 : 0.01);
-    }
 
-    t++;
+const setLeds = (colors) => {
+    colors.forEach((c, i) => {
+	channel.array[i] = c;
+    });
 
     ws281x.render();
+};
+    
+
+setInterval(() => {
+    setLeds([0,1,2,3,4,5,6,7,8,9,10,11]
+	    .map(i => HSVtoHex(((i + 9) % 12) / 12, 1, t % 12 == i ? 0.1 : 0.01)));
+    t++;
 }, 100);
 
+
+const OSC = require('osc-js')
+
+// https://github.com/adzialocha/osc-js/wiki/UDP-Plugin
+
+const options = { open: { port: 9000 },  send: { host: '192.168.1.15',  port: 9001 } }
+const osc = new OSC({ plugin: new OSC.DatagramPlugin(options) })
+
+osc.on('/test', message => {
+    console.log(message.args)
+})
+
+osc.on('open', () => {
+    console.log('open');
+    setInterval(() => {
+	osc.send(new OSC.Message('/response', Math.random()))
+    }, 1000)
+})
+
+console.log('opening')
+
+osc.open(options) // bind socket to localhost:9000
