@@ -67,6 +67,7 @@ module.exports = {
   clear: async (str, x = 0, y = 0) => {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0,0,128,128);
+    await render(sh1107, canvas, buffer);
   },
   init,
   print: async (str, x = 0, y = 0, fontsize = 27) => {
