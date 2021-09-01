@@ -18,15 +18,15 @@ osc.on('/oled/clear', message => {
   oled.clear();
 });
 
-osc.on('/oled/print', message => {
-  console.log('/oled/print', message);
-  oled.print(...message);
+osc.on('/oled/print', ({ args: [str, x, y, fontSize] }) => {
+  console.log('/oled/print', str, x, y, fontSize);
+  oled.print(str, x, y, fontSize);
 });
 
 
-osc.on('/led/set', message => {
-  console.log('/led/set', message);
-  ledRing.setLed(...message)
+osc.on('/led/set', ({ args: [i, h, s, v] }) => {
+  console.log('/led/set', i, h, s, v);
+  ledRing.setLed(i, h, s, v)
 });
 
 osc.on('open', () => {
