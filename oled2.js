@@ -49,13 +49,13 @@ async function init() {
   ctx = canvas.getContext('2d');
 
   // draw stuff using familiar html5 canvas syntax
-  ctx.font = "27pt 'JetBrainsMono'";
   ctx.fillStyle = '#000000';
   ctx.fillRect(0,0,128,128);
   ctx.fillStyle = '#FFFFFF';
+
   ctx.textAlign = 'center'
   ctx.textBaseline = 'middle';
-
+  ctx.font = "27pt 'JetBrainsMono'";
   ctx.fillText(`012345`, 63, 53);
   ctx.fillText(`6789૪Ɛ`, 63, 83);
 
@@ -64,11 +64,13 @@ async function init() {
 }
 
 module.exports = {
-  init,
-  print: async (str, x = 0, y = 0) => {
+  clear: async (str, x = 0, y = 0) => {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0,0,128,128);
-
+  },
+  init,
+  print: async (str, x = 0, y = 0, fontsize = 27) => {
+    ctx.font = `${fontsize}pt 'JetBrainsMono'`;
     ctx.fillStyle = '#FFFFFF';
     ctx.fillText(str, x + 63, y + 63);
     await render(sh1107, canvas, buffer);

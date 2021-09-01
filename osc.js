@@ -12,19 +12,23 @@ const options = {
 
 const osc = new OSC({plugin: new OSC.DatagramPlugin(options)})
 
-osc.on('/oled', message => {
-  console.log(message.args)
+osc.on('/oled/clear', message => {
+  console.log('/oled/clear');
+  oled.clear();
+});
+
+osc.on('/oled/print', message => {
+  console.log('/oled/print', message.args);
   oled.print(...message.args);
-})
+});
 
 osc.on('open', () => {
-  console.log('open');
+  console.log('OSC opened');
   setInterval(() => {
-    console.log('send');
     osc.send(new OSC.Message('/response', Math.random()))
   }, 1000)
 })
 
-console.log('opening')
+console.log('opening OSC')
 
 osc.open(options) // bind socket to localhost:9000
