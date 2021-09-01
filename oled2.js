@@ -66,8 +66,11 @@ async function init() {
 module.exports = {
   init,
   print: async (str, x = 0, y = 0) => {
-    ctx.fillRect(x + 63, y + 63, 128, 128);
-    ctx.fillText(str, x, y);
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0,0,128,128);
+
+    ctx.fillStyle = '#FFFFFF';
+    ctx.fillText(str, x + 63, y + 63);
     await render(sh1107, canvas, buffer);
   }
 }
