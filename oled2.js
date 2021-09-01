@@ -1,7 +1,6 @@
 const I2C = require('raspi-i2c').I2C;
 const SH1107 = require('sh1107-js');
 const PImage = require('pureimage');
-const Buffer = require('buffer');
 
 async function render(sh1107, canvas, buffer) {
   for (let index = 0; index < canvas.height * canvas.width; index += 1) {
