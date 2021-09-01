@@ -22,6 +22,5 @@
     "raspi-i2c": "6.2.4",
     "rpi-ws281x-native": "github:meta-meta/node-rpi-ws281x-native",
     "sh1107-js": "github:meta-meta/sh1107-js",
-    "trill-linux": "github:meta-meta/Trill-Linux"
   }
 }
