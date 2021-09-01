@@ -1,3 +1,4 @@
+const ledRing = require('./led-ring');
 const oled = require('./oled2');
 const OSC = require('osc-js');
 
@@ -22,9 +23,11 @@ osc.on('/oled/print', ([str, x, y, fontSize]) => {
   oled.print(str, x, y, fontSize);
 });
 
-const ledRing = require('./led-ring');
 
-osc.on('/led/set', ([i, h, s, v]) => ledRing.setLed(i, h, s, v));
+osc.on('/led/set', ([i, h, s, v]) => {
+  console.log('/led/set', i, h, s, v);
+  ledRing.setLed(i, h, s, v)
+});
 
 osc.on('open', () => {
   console.log('OSC opened');

@@ -78,7 +78,6 @@ const channel = ws281x(12, {
 
 
 
-const colorArray = channel.array;
 let t = 0;
 
 const setLeds = (colors) => {
