@@ -17,10 +17,14 @@ osc.on('/oled/clear', message => {
   oled.clear();
 });
 
-osc.on('/oled/print', message => {
-  console.log('/oled/print', message.args);
-  oled.print(...message.args);
+osc.on('/oled/print', ([str, x, y, fontSize]) => {
+  console.log('/oled/print', str, x, y, fontSize);
+  oled.print(str, x, y, fontSize);
 });
+
+const ledRing = require('./led-ring');
+
+osc.on('/led/set', ([i, h, s, v]) => ledRing.setLed(i, h, s, v));
 
 osc.on('open', () => {
   console.log('OSC opened');
