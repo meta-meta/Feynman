@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/meta-meta/Feynman#readme",
   "dependencies": {
-    "raspi-i2c": "^6.2.4",
+    "jetbrains-mono": "github:JetBrains/JetBrainsMono",
+    "pureimage": "0.3.5",
+    "raspi-i2c": "6.2.4",
     "rpi-ws281x-native": "github:meta-meta/node-rpi-ws281x-native",
-    "sh1107-js": "github:meta-meta/sh1107-js"
+    "sh1107-js": "github:meta-meta/sh1107-js",
+    "trill-linux": "github:meta-meta/Trill-Linux"
   }
 }
