@@ -97,7 +97,7 @@ const setLeds = (colors) => {
 
 module.exports = {
   setLed: (i, h, s, v) => {
-    channel.array[i] = HSVtoHex(h, s, v);
+    channel.array[(i + 9) % 12] = HSVtoHex(h, s, v);
     ws281x.render();
   },
 }
