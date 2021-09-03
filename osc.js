@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const ledRing = require('./led-ring');
 const oled = require('./oled2');
 const OSC = require('osc-js');
@@ -24,9 +25,11 @@ osc.on('/oled/print', ({ args: [str, x, y, fontSize] }) => {
 });
 
 
-osc.on('/led/set', ({ args: [i, h, s, v] }) => {
-  console.log('/led/set', i, h, s, v);
-  ledRing.setLed(i, h, s, v)
+osc.on('/led/set', ({ args }) => {
+  _.chunk(args, 4).forEach(([i, h, s, v]) => {
+    // console.log('/led/set', i, h, s, v);
+    ledRing.setLed(i, h, s, v)
+  })
 });
 
 osc.on('open', () => {

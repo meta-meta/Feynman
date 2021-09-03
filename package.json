@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/meta-meta/Feynman#readme",
   "dependencies": {
+    "lodash": "^4.17.21",
     "osc-js": "^2.1.2",
     "pureimage": "0.3.5",
     "raspi-i2c": "6.2.4",
