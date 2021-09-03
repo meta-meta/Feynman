@@ -76,28 +76,23 @@ const channel = ws281x(12, {
     gpio: 18,
 });
 
-
-
-let t = 0;
-
-const setLeds = (colors) => {
-    colors.forEach((c, i) => {
-	channel.array[i] = c;
-    });
-
-    ws281x.render();
+const _setLed = (i, color) => {
+  channel.array[(i + 3) % 12] = color;
 };
 
-
-// setInterval(() => {
-//     setLeds([0,1,2,3,4,5,6,7,8,9,10,11]
-// 	    .map(i => HSVtoHex(((i + 9) % 12) / 12, 1, t % 12 == i ? 0.1 : 0.01)));
-//     t++;
-// }, 100);
+const colors = [];
 
 module.exports = {
+  addLed: (i, h, s, v) => {
+    _setLed(i, colors[i] + HSVtoHex(h, s, v));
+  },
   setLed: (i, h, s, v) => {
-    channel.array[(i + 3) % 12] = HSVtoHex(h, s, v);
+    const color = HSVtoHex(h, s, v);
+    colors[i] = color;
+    _setLed(i, color);
+  },
+  render: () => {
     ws281x.render();
   },
+
 }

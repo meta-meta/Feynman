@@ -29,7 +29,16 @@ osc.on('/led/set', ({ args }) => {
   _.chunk(args, 4).forEach(([i, h, s, v]) => {
     // console.log('/led/set', i, h, s, v);
     ledRing.setLed(i, h, s, v)
-  })
+  });
+  ledRing.render();
+});
+
+osc.on('/led/add', ({ args }) => {
+  _.chunk(args, 4).forEach(([i, h, s, v]) => {
+    // console.log('/led/set', i, h, s, v);
+    ledRing.addLed(i, h, s, v);
+  });
+  ledRing.render();
 });
 
 osc.on('open', () => {
