@@ -64,10 +64,10 @@ async function init() {
 }
 
 module.exports = {
-  clear: async (str, x = 0, y = 0) => {
+  clear: async (isImmediate = false) => {
     ctx.fillStyle = '#000000';
     ctx.fillRect(0,0,128,128);
-    await render(sh1107, canvas, buffer);
+    if (isImmediate) await render(sh1107, canvas, buffer);
   },
   init,
   print: async (str, x = 0, y = 0, fontsize = 27) => {

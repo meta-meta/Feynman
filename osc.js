@@ -14,9 +14,9 @@ const options = {
 
 const osc = new OSC({plugin: new OSC.DatagramPlugin(options)})
 
-osc.on('/oled/clear', message => {
-  console.log('/oled/clear');
-  oled.clear();
+osc.on('/oled/clear', ({ args: [isImmediate]}) => {
+  console.log('/oled/clear', isImmediate);
+  oled.clear(isImmediate);
 });
 
 osc.on('/oled/print', ({ args: [str, x, y, fontSize] }) => {
